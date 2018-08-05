@@ -14,4 +14,5 @@ public interface NumerusRepository extends BaseRepository<Numerus, String> {
     Numerus findTopByOrderByNumberDesc();
 
     Long deleteByNumber(int number);
+
 }

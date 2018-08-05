@@ -6,11 +6,12 @@ import com.example.demo.data.model.Message;
 import com.example.demo.data.service.NumerusServiceImpl;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -25,10 +26,22 @@ public class MainController extends GlobalExceptionHandler {
         System.out.println("logi log");
     }
 
+    @PostMapping(value = "numerus", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @ResponseBody
+    private ResponseEntity addNumerus(@RequestBody Numerus numerus) {
+
+        Numerus numerusTEMP = numerusService.getNumerusByNumber(numerus.getNumber());
+
+        if (ObjectUtils.isEmpty(numerusTEMP)) {
+            return ResponseEntity.ok(numerusService.addNumerus(numerus));
+        } else {
+            return ResponseEntity.badRequest().body(new Message("already exist"));
+        }
+
+    }
+
     @GetMapping(value = "numerus/{number}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     private ResponseEntity<Numerus> getNumerusByNumber(@PathVariable int number) {
-
-
         return ResponseEntity.ok(numerusService.getNumerusByNumber(number));
     }
 

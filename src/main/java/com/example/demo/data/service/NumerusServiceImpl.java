@@ -15,6 +15,11 @@ public class NumerusServiceImpl implements NumerusService {
     NumerusRepository numerusRepository;
 
     @Override
+    public Numerus addNumerus(Numerus numerus) {
+        return numerusRepository.save(new Numerus(numerus.getNumber(), numerus.getinsert_date()));
+    }
+
+    @Override
     public Numerus getNumerusByMaxNumber() {
         return numerusRepository.findTopByOrderByNumberDesc();
     }

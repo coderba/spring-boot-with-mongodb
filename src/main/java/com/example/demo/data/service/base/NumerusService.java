@@ -6,6 +6,8 @@ import java.util.List;
 
 public interface NumerusService {
 
+    Numerus addNumerus(Numerus numerus);
+
     Numerus getNumerusByMaxNumber();
 
     Numerus getNumerusByMinNumber();
