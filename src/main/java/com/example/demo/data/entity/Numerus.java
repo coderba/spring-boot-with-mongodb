@@ -1,20 +1,18 @@
 package com.example.demo.data.entity;
 
-import org.springframework.data.annotation.Id;
+import com.example.demo.data.entity.base.DataEntity;
 import org.springframework.data.mongodb.core.index.Indexed;
 
-public class Number {
+public class Numerus extends DataEntity {
 
     @Indexed(unique = true)
     public int number;
     public String insertDate;
-    @Id
-    private String id;
 
-    public Number() {
+    public Numerus() {
     }
 
-    public Number(int number, String insertDate) {
+    public Numerus(int number, String insertDate) {
         this.number = number;
         this.insertDate = insertDate;
     }
@@ -37,7 +35,7 @@ public class Number {
 
     @Override
     public String toString() {
-        return "Number{" +
+        return "Numerus{" +
                 "id=" + id +
                 ", number=" + number +
                 ", insertDate='" + insertDate + '\'' +
