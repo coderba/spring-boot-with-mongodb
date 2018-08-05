@@ -44,7 +44,12 @@ public class MainController extends GlobalExceptionHandler {
     private ResponseEntity getNumerusByNumber(@PathVariable String param) {
 
         if (param.matches("[0-9]+") && param.length() > 0) {
-            return ResponseEntity.ok(numerusService.getNumerusByNumber(Integer.valueOf(param)));
+            Numerus numerus = numerusService.getNumerusByNumber(Integer.valueOf(param));
+            if (numerus == null) {
+                return ResponseEntity.noContent().build();
+            } else {
+                return ResponseEntity.ok(numerus);
+            }
         } else if (param.contains("[a-zA-Z]+") == false && param.length() > 0) {
             if (param.equals(DESCENDING) || param.equals(ASCENDING)) {
                 return ResponseEntity.ok(numerusService.getNumerusAll(param));
@@ -64,8 +69,9 @@ public class MainController extends GlobalExceptionHandler {
 
     @DeleteMapping(value = "numerus/{number}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     private ResponseEntity deleteNumerus(@PathVariable int number) {
-        if (numerusService.removeNumerusByNumber(number).equals(1)) {
-            return ResponseEntity.ok(numerusService.removeNumerusByNumber(number));
+        int returnValue = numerusService.removeNumerusByNumber(number).intValue();
+        if (returnValue == 1) {
+            return ResponseEntity.ok().body(new Message("delete process success"));
         } else {
             return ResponseEntity.badRequest().body(new Message("not found"));
         }
