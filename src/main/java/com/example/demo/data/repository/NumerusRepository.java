@@ -1,7 +1,6 @@
 package com.example.demo.data.repository;
 
 import com.example.demo.data.entity.Numerus;
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
