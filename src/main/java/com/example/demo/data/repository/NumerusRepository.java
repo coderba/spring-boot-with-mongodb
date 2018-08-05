@@ -1,11 +1,14 @@
 package com.example.demo.data.repository;
 
 import com.example.demo.data.entity.Numerus;
-import com.example.demo.data.repository.base.BaseRepository;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
-public interface NumerusRepository extends BaseRepository<Numerus, String> {
+public interface NumerusRepository extends MongoRepository<Numerus, String> {
 
     Numerus findByNumber(int number);
 
@@ -14,5 +17,10 @@ public interface NumerusRepository extends BaseRepository<Numerus, String> {
     Numerus findTopByOrderByNumberDesc();
 
     Long deleteByNumber(int number);
+
+    List<Numerus> findAllByOrderByNumberAsc();
+
+    List<Numerus> findAllByOrderByNumberDesc();
+
 
 }

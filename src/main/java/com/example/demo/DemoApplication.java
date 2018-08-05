@@ -12,7 +12,7 @@ import java.util.Calendar;
 
 @SpringBootApplication
 @EnableAutoConfiguration
-public class DemoApplication implements CommandLineRunner {
+public class DemoApplication {
 
     @Autowired
     private NumerusRepository numerusRepository;
@@ -21,6 +21,7 @@ public class DemoApplication implements CommandLineRunner {
         SpringApplication.run(DemoApplication.class, args);
     }
 
+    /*
     @Override
     public void run(String... args) {
 
@@ -30,17 +31,35 @@ public class DemoApplication implements CommandLineRunner {
 
         // save a couple of numbers
         numerusRepository.save(new Numerus(1, calendar.getTime().toString()));
-        numerusRepository.save(new Numerus(2, calendar.getTime().toString()));
-        numerusRepository.save(new Numerus(3, calendar.getTime().toString()));
-        numerusRepository.save(new Numerus(4, calendar.getTime().toString()));
-        numerusRepository.save(new Numerus(5, calendar.getTime().toString()));
-        numerusRepository.save(new Numerus(6, calendar.getTime().toString()));
         numerusRepository.save(new Numerus(7, calendar.getTime().toString()));
+        numerusRepository.save(new Numerus(2, calendar.getTime().toString()));
+        numerusRepository.save(new Numerus(4, calendar.getTime().toString()));
+        numerusRepository.save(new Numerus(6, calendar.getTime().toString()));
+        numerusRepository.save(new Numerus(5, calendar.getTime().toString()));
+        numerusRepository.save(new Numerus(3, calendar.getTime().toString()));
 
         // fetch all numbers
         System.out.println("\nCustomers found with findAll():");
         System.out.println("-------------------------------");
         for (Numerus numerus : numerusRepository.findAll()) {
+            System.out.println(numerus);
+        }
+        System.out.println("-----------------------------------------------------------------------------------------");
+
+
+        // fetch all numbers
+        System.out.println("\nCustomers found with findAllByOrderByNumberAsc():");
+        System.out.println("-------------------------------");
+        for (Numerus numerus : numerusRepository.findAllByOrderByNumberAsc()) {
+            System.out.println(numerus);
+        }
+        System.out.println("-----------------------------------------------------------------------------------------");
+
+
+        // fetch all numbers
+        System.out.println("\nCustomers found with findAllByOrderByNumberDesc():");
+        System.out.println("-------------------------------");
+        for (Numerus numerus : numerusRepository.findAllByOrderByNumberDesc()) {
             System.out.println(numerus);
         }
         System.out.println("-----------------------------------------------------------------------------------------");
@@ -79,5 +98,6 @@ public class DemoApplication implements CommandLineRunner {
         System.out.println("-----------------------------------------------------------------------------------------");
 
     }
+    */
 
 }

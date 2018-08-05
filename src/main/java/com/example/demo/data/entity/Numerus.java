@@ -1,11 +1,14 @@
 package com.example.demo.data.entity;
 
-import com.example.demo.data.entity.base.DataEntity;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 
 import java.util.Objects;
 
-public class Numerus extends DataEntity {
+public class Numerus {
+
+    @Id
+    public String id;
 
     @Indexed(unique = true)
     public int number;
@@ -24,16 +27,8 @@ public class Numerus extends DataEntity {
         return number;
     }
 
-    public void setNumber(int number) {
-        this.number = number;
-    }
-
-    public String getinsert_date() {
+    public String getInsert_date() {
         return insert_date;
-    }
-
-    public void setinsert_date(String insert_date) {
-        this.insert_date = insert_date;
     }
 
     @Override

@@ -14,7 +14,7 @@ public interface NumerusService {
 
     Numerus getNumerusByNumber(int number);
 
-    List<Numerus> getNumerusAll();
+    List<Numerus> getNumerusAll(String order);
 
     Long removeNumerusByNumber(int number);
 }
